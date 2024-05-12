@@ -1,0 +1,50 @@
+export const guitars = [
+    {
+        id: 1,
+        name: "Epiphone Les Paul Studio",
+        cost: "15 000 грн",
+        image: "/guitars-photo/LesPaul.webp",
+    },
+    {
+        id: 2,
+        name: "Limited Edition American Professional II Telecaster",
+        cost: "16 500 грн",
+        image: "/guitars-photo/fender/telecaster/1/main.jpg",
+        images: [
+            "/guitars-photo/fender/telecaster/1/1.jpg",
+            "/guitars-photo/fender/telecaster/1/2.jpg",
+            "/guitars-photo/fender/telecaster/1/3.jpg",
+            "/guitars-photo/fender/telecaster/1/4.jpg",
+            "/guitars-photo/fender/telecaster/1/5.jpg",
+            "/guitars-photo/fender/telecaster/1/6.jpg",
+        ],
+    },
+    {
+        id: 3,
+        name: "DELUXE ERIC KRASNO BRIGHTON",
+        cost: "72 500 грн",
+        image: "/guitars-photo/dangelico/solid/1/main.png",
+        images: [
+            "/guitars-photo/dangelico/solid/1/1.png",
+            "/guitars-photo/dangelico/solid/1/2.png",
+            "/guitars-photo/dangelico/solid/1/3.png",
+            "/guitars-photo/dangelico/solid/1/4.png",
+            "/guitars-photo/dangelico/solid/1/5.png",
+            "/guitars-photo/dangelico/solid/1/6.png",
+        ],
+    },
+    {
+        id: 4,
+        name: "DELUXE BRANDON NIEDERAUER ATLANTIC",
+        cost: "73 000 грн",
+        image: "/guitars-photo/dangelico/solid/2/main.png",
+        images: [
+            "/guitars-photo/dangelico/solid/2/1.png",
+            "/guitars-photo/dangelico/solid/2/2.png",
+            "/guitars-photo/dangelico/solid/2/3.png",
+            "/guitars-photo/dangelico/solid/2/4.png",
+            "/guitars-photo/dangelico/solid/2/5.png",
+            "/guitars-photo/dangelico/solid/2/6.png",
+        ],
+    },
+]
