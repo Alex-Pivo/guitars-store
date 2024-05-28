@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://eu-central-1.aws.data.mongodb-api.com/app/data-rozrmjq/endpoint/data/v1';
