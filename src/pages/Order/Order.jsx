@@ -26,15 +26,33 @@ const Order = () => {
 
   
 
-  const handlePaymentSuccess = (paymentRequest) => {
+  // const handlePaymentSuccess = (paymentRequest) => {
+  //   console.log("Payment successful", paymentRequest);
+  //   setIsPaymentSuccessful(true);
+  //   resend.emails.send({
+  //     from: 'pivoshenckoalexsey@gmail.com',
+  //     to: email,
+  //     subject: 'Hello World',
+  //     html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
+  //   });
+  //   clearCart(); // Очистка корзины после успешной оплаты
+  // };
+  const handlePaymentSuccess = (paymentRequest, email) => {
     console.log("Payment successful", paymentRequest);
     setIsPaymentSuccessful(true);
+  
+    // Отправка письма через Resend
     resend.emails.send({
       from: 'pivoshenckoalexsey@gmail.com',
       to: email,
       subject: 'Hello World',
       html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
+    }).then(() => {
+      console.log('Email sent successfully');
+    }).catch(error => {
+      console.error('Error sending email:', error);
     });
+  
     clearCart(); // Очистка корзины после успешной оплаты
   };
 
