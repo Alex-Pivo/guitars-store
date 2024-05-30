@@ -33,16 +33,16 @@
 
 
 
-import React, { useRef, useMemo, Suspense } from "react";
-import { useGLTF, useProgress, Html } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import React, { useRef, useMemo } from "react";
+import { useGLTF } from "@react-three/drei";
+// import { Canvas } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
 
 // Loading component for showing progress
-function Loader() {
-  const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
-}
+// function Loader() {
+//   const { progress } = useProgress();
+//   return <Html center>{progress} % loaded</Html>;
+// }
 
 export function Bass(props) {
   const meshRef = useRef(null);
