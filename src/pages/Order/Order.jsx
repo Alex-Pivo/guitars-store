@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../../components/Cart/CartContext";
 import styles from "../../styles/order.module.scss";
 import GooglePayButton from "@google-pay/button-react";
-import { Resend } from 'resend';
+import { Resend } from "resend";
 import { useRef } from "react";
 
 const Order = () => {
@@ -12,7 +12,7 @@ const Order = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const form = useRef();
-  const resend = new Resend('re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS');
+  const resend = new Resend("re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS");
 
   const calculateTotal = () => {
     return cart.items.reduce((total, item) => {
@@ -23,8 +23,6 @@ const Order = () => {
   };
 
   const totalAmount = calculateTotal();
-
-  
 
   // const handlePaymentSuccess = (paymentRequest) => {
   //   console.log("Payment successful", paymentRequest);
@@ -37,35 +35,29 @@ const Order = () => {
   //   });
   //   clearCart(); // Очистка корзины после успешной оплаты
   // };
+
   const handlePaymentSuccess = (paymentRequest, email) => {
     console.log("Payment successful", paymentRequest);
     setIsPaymentSuccessful(true);
-  
+
     // Отправка письма через Resend
-    resend.emails.send({
-      from: 'pivoshenckoalexsey@gmail.com',
-      to: email,
-      subject: 'Hello World',
-      html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
-    }).then(() => {
-      console.log('Email sent successfully');
-    }).catch(error => {
-      console.error('Error sending email:', error);
-    });
-  
+    resend.emails
+      .send({
+        from: "pivoshenckoalexsey@gmail.com",
+        to: email,
+        subject: "Hello World",
+        html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+        mode: "no-cors",
+      })
+      .then(() => {
+        console.log("Email sent successfully");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+
     clearCart(); // Очистка корзины после успешной оплаты
   };
-
-  const createMessage = () => {
-    let messageText = `Name: ${name}\nEmail: ${email}\n\nOrder Details:\n`;
-    cart.items.forEach((item) => {
-      messageText += `Product: ${item.name}, Quantity: ${item.quantity}, Price: ${item.cost}\n`;
-    });
-    messageText += `Total: ${calculateTotal()} ₴`;
-    return messageText;
-  };
-
-
 
   return (
     <div className={styles.container}>
@@ -110,11 +102,16 @@ const Order = () => {
                 </div>
               </div>
             ))}
+            {cart.items.length === 0 && (
+              <p className={styles.mes}>
+                В вашому замовленні немає товарів. Додайте товар до кошика.
+              </p>
+            )}
           </div>
           <form ref={form} className={styles.bottom}>
             <div className={styles.form}>
               <label>
-                Ім'я: 
+                Ім'я:
                 <input
                   type="text"
                   value={name}
@@ -123,7 +120,7 @@ const Order = () => {
               </label>
               <br />
               <label>
-                Email: 
+                Email:
                 <input
                   type="email"
                   value={email}
@@ -136,41 +133,43 @@ const Order = () => {
               Загальна сума: <span>{totalAmount.toFixed(2)} ₴</span>
             </h3>
 
-            <GooglePayButton
-              environment="TEST"
-              paymentRequest={{
-                apiVersion: 2,
-                apiVersionMinor: 0,
-                allowedPaymentMethods: [
-                  {
-                    type: "CARD",
-                    parameters: {
-                      allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-                      allowedCardNetworks: ["MASTERCARD", "VISA"],
-                    },
-                    tokenizationSpecification: {
-                      type: "PAYMENT_GATEWAY",
+            {cart.items.length != 0 && (
+              <GooglePayButton
+                environment="TEST"
+                paymentRequest={{
+                  apiVersion: 2,
+                  apiVersionMinor: 0,
+                  allowedPaymentMethods: [
+                    {
+                      type: "CARD",
                       parameters: {
-                        gateway: "example",
-                        gatewayMerchantId: "exampleGatewayMerchantId",
+                        allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                        allowedCardNetworks: ["MASTERCARD", "VISA"],
+                      },
+                      tokenizationSpecification: {
+                        type: "PAYMENT_GATEWAY",
+                        parameters: {
+                          gateway: "example",
+                          gatewayMerchantId: "exampleGatewayMerchantId",
+                        },
                       },
                     },
+                  ],
+                  merchantInfo: {
+                    merchantId: "BCR2DN4TZWC23XQ3",
+                    merchantName: "Demo Merchant",
                   },
-                ],
-                merchantInfo: {
-                  merchantId: "BCR2DN4TZWC23XQ3",
-                  merchantName: "Demo Merchant",
-                },
-                transactionInfo: {
-                  totalPriceStatus: "FINAL",
-                  totalPriceLabel: "Total",
-                  totalPrice: totalAmount.toFixed(2),
-                  currencyCode: "UAH",
-                  countryCode: "UA",
-                },
-              }}
-              onLoadPaymentData={handlePaymentSuccess}
-            />
+                  transactionInfo: {
+                    totalPriceStatus: "FINAL",
+                    totalPriceLabel: "Total",
+                    totalPrice: totalAmount.toFixed(2),
+                    currencyCode: "UAH",
+                    countryCode: "UA",
+                  },
+                }}
+                onLoadPaymentData={handlePaymentSuccess}
+              />
+            )}
           </form>
         </div>
       )}

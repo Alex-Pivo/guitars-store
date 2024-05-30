@@ -34,11 +34,11 @@ const GuitarProduct = () => {
       <div className={styles.shop}>
         <div className={styles.pages}>
           <Link className={styles.link} to={ROUTES.HOME}>
-            Home
+            Головна
           </Link>{" "}
           /{" "}
           <Link className={styles.link} to={ROUTES.GUITARS}>
-            Guitars{" "}
+            Магазин{" "}
           </Link>{" "}
           / {guitar ? guitar.name : "none"}
         </div>
@@ -112,7 +112,7 @@ const GuitarProduct = () => {
                 <div className={stylesGuitar.info__container}>
                   {cunt === 0 && (
                     <div className={stylesGuitar.haracteristics}>
-                      <h3 clcassName={stylesGuitar.title}>Характеристики</h3>ї
+                      <h3 clcassName={stylesGuitar.title}>Характеристики:</h3>
                       <p className={stylesGuitar.text}>{guitar.har}</p>
                     </div>
                   )}
