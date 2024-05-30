@@ -103,7 +103,7 @@ function Body() {
             <ambientLight intensity={0.1} />
             <directionalLight position={[1, 1, 1]} intensity={10.8} />
             <Suspense fallback={null}>
-              <Bass />
+{/*               <Bass /> */}
             </Suspense>
           </Canvas>
         </div>
