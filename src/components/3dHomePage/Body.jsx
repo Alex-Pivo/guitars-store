@@ -6,8 +6,13 @@ import Guitar from "./3d/guitar/Guitar";
 import { ModelStrat } from "./3d/Strat/ModelStrat";
 import { Bass } from "./3d/bass/Bass";
 import { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/routes,";
+import { Link } from "react-router-dom";
 
 function Body() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={style.body}>
@@ -15,9 +20,16 @@ function Body() {
           <div className={style.first__info}>
             <h1>Акустичні гітари</h1>
             <p>
-            Акустична гітара - чудовий вибір для музикантів завдяки своїй універсальності та портативності, дозволяючи грати будь-де без потреби в додатковому обладнанні
+              Акустична гітара - чудовий вибір для музикантів завдяки своїй
+              універсальності та портативності, дозволяючи грати будь-де без
+              потреби в додатковому обладнанні
             </p>
-            <button className={style.first__btn}>Переглянути всі</button>
+            <Link
+              to={`${ROUTES.GUITARS}?type=acoustic`}
+              className={style.first__btn}
+            >
+              Переглянути всі
+            </Link>
           </div>
 
           <Canvas
@@ -52,9 +64,17 @@ function Body() {
           <div className={style.second__info}>
             <h1>Електричні гітари</h1>
             <p>
-            Електрична гітара - чудовий вибір для музикантів завдяки своїй здатності створювати широкий спектр звуків за допомогою ефектів і підсилювачів, що дозволяє експериментувати з різними стилями музики
+              Електрична гітара - чудовий вибір для музикантів завдяки своїй
+              здатності створювати широкий спектр звуків за допомогою ефектів і
+              підсилювачів, що дозволяє експериментувати з різними стилями
+              музики
             </p>
-            <button className={style.second__btn}>Переглянути всі</button>
+            <Link
+              to={`${ROUTES.GUITARS}?type=electric`}
+              className={style.second__btn}
+            >
+              Переглянути всі
+            </Link>
           </div>
         </div>
 
@@ -65,7 +85,12 @@ function Body() {
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
               laborum, optio, sequi facilis reprehenderit.
             </p>
-            <button className={style.third__btn}>Переглянути всі</button>
+            <Link
+              to={`${ROUTES.GUITARS}?type=bass`}
+              className={style.third__btn}
+            >
+              Переглянути всі
+            </Link>
           </div>
 
           <Canvas
