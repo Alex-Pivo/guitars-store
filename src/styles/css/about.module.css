@@ -1,0 +1,605 @@
+.about {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 40px 40px 40px;
+}
+.about .pages {
+  width: auto;
+  height: 30px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  color: #bbbbbb;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.about .pages .link {
+  text-decoration: none;
+  color: #bbbbbb;
+  transition: all 0.4s ease 0s;
+}
+.about .pages .link:hover {
+  color: #333333;
+  transition: all 0.4s ease 0s;
+}
+.about .title {
+  font-family: Montserrat;
+  font-size: 68px;
+  font-weight: 900;
+  color: #333333;
+  margin-bottom: 50px;
+}
+.about .container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.about .container .top {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.about .container .top .left {
+  width: 48%;
+  height: 100%;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+}
+.about .container .top .right {
+  width: 48%;
+  height: 100%;
+  border-radius: 10px;
+  transition: all 0.4s ease 0s;
+  background: url("../../public//about/shop.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.about .container .top .right:hover {
+  transition: all 0.4s ease 0s;
+  width: 50%;
+}
+.about .container .center {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.about .container .center .left {
+  width: 48%;
+  height: 100%;
+  border-radius: 10px;
+  transition: all 0.4s ease 0s;
+  background: url("../../public//about/gtrs.webp");
+  background-position: center;
+  background-size: cover;
+}
+.about .container .center .left:hover {
+  transition: all 0.4s ease 0s;
+  width: 50%;
+}
+.about .container .center .right {
+  width: 48%;
+  height: 100%;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+}
+.about .container .bottom {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.about .container .bottom .left {
+  width: 48%;
+  height: 100%;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+}
+.about .container .bottom .right {
+  width: 48%;
+  height: 100%;
+  border-radius: 10px;
+  background: url("../../public//about/acoust.jpg");
+  background-position: center;
+  background-size: cover;
+  transition: all 0.4s ease 0s;
+}
+.about .container .bottom .right:hover {
+  transition: all 0.4s ease 0s;
+  width: 50%;
+}
+
+@media screen and (max-width: 1025px) {
+  .about {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 40px 40px 40px;
+  }
+  .about .pages {
+    width: auto;
+    height: 30px;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    color: #bbbbbb;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  .about .pages .link {
+    text-decoration: none;
+    color: #bbbbbb;
+    transition: all 0.4s ease 0s;
+  }
+  .about .pages .link:hover {
+    color: #333333;
+    transition: all 0.4s ease 0s;
+  }
+  .about .title {
+    font-family: Montserrat;
+    font-size: 58px;
+    font-weight: 900;
+    color: #333333;
+    margin-bottom: 50px;
+  }
+  .about .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top {
+    width: 100%;
+    height: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top .left {
+    width: 48%;
+    height: 100%;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .top .right {
+    width: 48%;
+    height: 100%;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/shop.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .top .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center {
+    width: 100%;
+    height: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .center .left {
+    width: 48%;
+    height: 100%;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/gtrs.webp");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .center .left:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center .right {
+    width: 48%;
+    height: 100%;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom {
+    width: 100%;
+    height: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .bottom .left {
+    width: 48%;
+    height: 100%;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom .right {
+    width: 48%;
+    height: 100%;
+    border-radius: 10px;
+    background: url("../../public//about/acoust.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: all 0.4s ease 0s;
+  }
+  .about .container .bottom .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .about {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px 20px;
+  }
+  .about .pages {
+    width: auto;
+    height: 30px;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    color: #bbbbbb;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  .about .pages .link {
+    text-decoration: none;
+    color: #bbbbbb;
+    transition: all 0.4s ease 0s;
+  }
+  .about .pages .link:hover {
+    color: #333333;
+    transition: all 0.4s ease 0s;
+  }
+  .about .title {
+    font-family: Montserrat;
+    font-size: 48px;
+    font-weight: 900;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .about .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top .left {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    order: 2;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .top .right {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/shop.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .top .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .center .left {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/gtrs.webp");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .center .left:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center .right {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .bottom .left {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    order: 2;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom .right {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    background: url("../../public//about/acoust.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: all 0.4s ease 0s;
+  }
+  .about .container .bottom .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .about {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px 20px;
+  }
+  .about .pages {
+    width: auto;
+    height: 30px;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    color: #bbbbbb;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  .about .pages .link {
+    text-decoration: none;
+    color: #bbbbbb;
+    transition: all 0.4s ease 0s;
+  }
+  .about .pages .link:hover {
+    color: #333333;
+    transition: all 0.4s ease 0s;
+  }
+  .about .title {
+    font-family: Montserrat;
+    font-size: 48px;
+    font-weight: 900;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .about .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .top .left {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    order: 2;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .top .right {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/shop.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .top .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .center .left {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    background: url("../../public//about/gtrs.webp");
+    background-position: center;
+    background-size: cover;
+  }
+  .about .container .center .left:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+  .about .container .center .right {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .about .container .bottom .left {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    order: 2;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .about .container .bottom .right {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    background: url("../../public//about/acoust.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: all 0.4s ease 0s;
+  }
+  .about .container .bottom .right:hover {
+    transition: all 0.4s ease 0s;
+    width: 50%;
+  }
+}/*# sourceMappingURL=about.module.css.map */

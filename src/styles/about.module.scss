@@ -1,8 +1,698 @@
-.container{
+.about {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 40px 40px 40px;
+
+  .pages {
+    // padding-left: 40px;
+    width: auto;
+    height: 30px;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 400;
+    color: #bbbbbb;
+    user-select: none;
+
+    margin-right: auto;
+    margin-bottom: 20px;
+    .link {
+      text-decoration: none;
+      color: #bbbbbb;
+      transition: all 0.4s ease 0s;
+    }
+    .link:hover {
+      color: #333333;
+      transition: all 0.4s ease 0s;
+    }
+  }
+
+  .title {
+    font-family: Montserrat;
+    font-size: 68px;
+    font-weight: 900;
+    color: #333333;
+
+    margin-bottom: 50px;
+  }
+
+  .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .top {
+      width: 100%;
+      height: 400px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        width: 48%;
+        height: 100%;
+
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 30px;
+
+        display: flex;
+        align-items: center;
+      }
+      .right {
+        width: 48%;
+        height: 100%;
+        border-radius: 10px;
+        transition: all 0.4s ease 0s;
+
+        background: url("../../public//about/shop.jpg");
+        background-position: center;
+        background-size: cover;
+      }
+      .right:hover{
+        transition: all 0.4s ease 0s;
+        width: 50%;
+      }
+    }
+    .center {
+      width: 100%;
+      height: 400px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        width: 48%;
+        height: 100%;
+        border-radius: 10px;
+        transition: all 0.4s ease 0s;
+
+        background: url("../../public//about/gtrs.webp");
+        background-position: center;
+        background-size: cover;
+      }
+      .left:hover{
+        transition: all 0.4s ease 0s;
+        width: 50%;
+      }
+      .right {
+        width: 48%;
+        height: 100%;
+
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 30px;
+
+        display: flex;
+        align-items: center;
+      }
+    }
+    .bottom {
+      width: 100%;
+      height: 400px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        width: 48%;
+        height: 100%;
+
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 30px;
+
+        display: flex;
+        align-items: center;
+      }
+      .right {
+        width: 48%;
+        height: 100%;
+        border-radius: 10px;
+
+        background: url("../../public//about/acoust.jpg");
+        background-position: center;
+        background-size: cover;
+        transition: all 0.4s ease 0s;
+      }
+      .right:hover{
+        transition: all 0.4s ease 0s;
+        width: 50%;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1025px){
+  .about {
+    width: 100%;
+    min-height: 100vh;
+  
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 30px 40px 40px 40px;
+  
+    .pages {
+      // padding-left: 40px;
+      width: auto;
+      height: 30px;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      color: #bbbbbb;
+      user-select: none;
+  
+      margin-right: auto;
+      margin-bottom: 20px;
+      .link {
+        text-decoration: none;
+        color: #bbbbbb;
+        transition: all 0.4s ease 0s;
+      }
+      .link:hover {
+        color: #333333;
+        transition: all 0.4s ease 0s;
+      }
+    }
+  
+    .title {
+      font-family: Montserrat;
+      font-size: 58px;
+      font-weight: 900;
+      color: #333333;
+  
+      margin-bottom: 50px;
+    }
+  
+    .container {
+      width: 100%;
+      height: auto;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+  
+      .top {
+        width: 100%;
+        height: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 48%;
+          height: 100%;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 48%;
+          height: 100%;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/shop.jpg");
+          background-position: center;
+          background-size: cover;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+      .center {
+        width: 100%;
+        height: 500px;
+  
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 48%;
+          height: 100%;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/gtrs.webp");
+          background-position: center;
+          background-size: cover;
+        }
+        .left:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+        .right {
+          width: 48%;
+          height: 100%;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+      }
+      .bottom {
+        width: 100%;
+        height: 500px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 48%;
+          height: 100%;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 48%;
+          height: 100%;
+          border-radius: 10px;
+  
+          background: url("../../public//about/acoust.jpg");
+          background-position: center;
+          background-size: cover;
+          transition: all 0.4s ease 0s;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1025px){
+  .about {
+    width: 100%;
+    min-height: 100vh;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px 20px;
+  
+    .pages {
+      // padding-left: 40px;
+      width: auto;
+      height: 30px;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      color: #bbbbbb;
+      user-select: none;
+  
+      margin-right: auto;
+      margin-bottom: 20px;
+      .link {
+        text-decoration: none;
+        color: #bbbbbb;
+        transition: all 0.4s ease 0s;
+      }
+      .link:hover {
+        color: #333333;
+        transition: all 0.4s ease 0s;
+      }
+    }
+  
+    .title {
+      font-family: Montserrat;
+      font-size: 48px;
+      font-weight: 900;
+      color: #333333;
+      text-align: center;
+  
+      margin-bottom: 30px;
+    }
+  
+    .container {
+      width: 100%;
+      height: auto;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+  
+      .top {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+          order: 2;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 100%;
+          height: 300px;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/shop.jpg");
+          background-position: center;
+          background-size: cover;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+      .center {
+        width: 100%;
+        height: auto;
+  
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: 300px;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/gtrs.webp");
+          background-position: center;
+          background-size: cover;
+        }
+        .left:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+        .right {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+      }
+      .bottom {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+          order: 2;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 100%;
+          height: 300px;
+          border-radius: 10px;
+  
+          background: url("../../public//about/acoust.jpg");
+          background-position: center;
+          background-size: cover;
+          transition: all 0.4s ease 0s;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1025px){
+  .about {
+    width: 100%;
+    min-height: 100vh;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px 20px;
+  
+    .pages {
+      // padding-left: 40px;
+      width: auto;
+      height: 30px;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      color: #bbbbbb;
+      user-select: none;
+  
+      margin-right: auto;
+      margin-bottom: 20px;
+      .link {
+        text-decoration: none;
+        color: #bbbbbb;
+        transition: all 0.4s ease 0s;
+      }
+      .link:hover {
+        color: #333333;
+        transition: all 0.4s ease 0s;
+      }
+    }
+  
+    .title {
+      font-family: Montserrat;
+      font-size: 48px;
+      font-weight: 900;
+      color: #333333;
+      text-align: center;
+  
+      margin-bottom: 30px;
+    }
+  
+    .container {
+      width: 100%;
+      height: auto;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+  
+      .top {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+          order: 2;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 100%;
+          height: 200px;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/shop.jpg");
+          background-position: center;
+          background-size: cover;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+      .center {
+        width: 100%;
+        height: auto;
+  
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: 200px;
+          border-radius: 10px;
+          transition: all 0.4s ease 0s;
+  
+          background: url("../../public//about/gtrs.webp");
+          background-position: center;
+          background-size: cover;
+        }
+        .left:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+        .right {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+      }
+      .bottom {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+  
+        .left {
+          width: 100%;
+          height: auto;
+          margin-top: 10px;
+          order: 2;
+  
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          color: #333333;
+          line-height: 30px;
+  
+          display: flex;
+          align-items: center;
+        }
+        .right {
+          width: 100%;
+          height: 200px;
+          border-radius: 10px;
+  
+          background: url("../../public//about/acoust.jpg");
+          background-position: center;
+          background-size: cover;
+          transition: all 0.4s ease 0s;
+        }
+        .right:hover{
+          transition: all 0.4s ease 0s;
+          width: 50%;
+        }
+      }
+    }
+  }
 }
