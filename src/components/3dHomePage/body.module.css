@@ -4,7 +4,7 @@
 }
 
 .first {
-  padding-top: 70px;
+  padding-top: 0px;
   width: 100%;
   height: 100vh;
 
@@ -13,12 +13,29 @@
   align-items: center;
   justify-content: space-between;
 
-  background-color: #2a2a2a;
+  background: url("../../../public/acoust.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.first::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  z-index: 1;
+  margin-top: 70px;
+  width: 100%;
+  height: 100%; /* Высота тени, можете настроить по необходимости */
+  background: rgba(0, 0, 0, 0.353); /* Цвет и прозрачность тени */
 }
 
 .first__info {
   width: 50%;
   height: 100%;
+  position: relative;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
@@ -66,6 +83,11 @@
   height: 100% !important;
   z-index: 0 !important;
 }
+
+/* .acoustic__img{
+  width: 50%;
+  height: 100%; 
+} */
 
 /* /////////// */
 
@@ -154,6 +176,10 @@
   height: 100vh;
 
   background-color: #2a2a2a;
+  background: url("../../../public/bass.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 
   display: flex;
   flex-direction: row;
@@ -502,14 +528,26 @@
   .first {
     padding-top: 20px;
     width: 100%;
-    height: 1000px;
+    height: 700px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
     background-color: #2a2a2a;
+  }
+
+  .first::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 1;
+    margin-top: 70px;
+    width: 100%;
+    height: 700px; /* Высота тени, можете настроить по необходимости */
+    background: rgba(0, 0, 0, 0.353); /* Цвет и прозрачность тени */
   }
 
   .first__info {
@@ -519,7 +557,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     order: 2;
 
     padding-left: 20px;
@@ -645,14 +683,14 @@
 
   .third {
     width: 100%;
-    height: 1000px;
+    height: 700px;
 
     background-color: #2a2a2a;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .third__info {
@@ -663,7 +701,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 
     padding-left: 20px;
     padding-right: 20px;
@@ -708,15 +746,27 @@
   .first {
     padding-top: 20px;
     width: 100%;
-    height: auto;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding-bottom: 20px;
 
     background-color: #2a2a2a;
+  }
+
+  .first::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 1;
+    margin-top: 70px;
+    width: 100%;
+    height: 100%; /* Высота тени, можете настроить по необходимости */
+    background: rgba(0, 0, 0, 0.353); /* Цвет и прозрачность тени */
   }
 
   .first__info {
@@ -726,7 +776,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     order: 2;
 
     padding-left: 20px;
@@ -854,14 +904,14 @@
 
   .third {
     width: 100%;
-    height: auto;
+    height: 100vh;
 
     background-color: #2a2a2a;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .third__info {
@@ -872,7 +922,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 
     padding-left: 20px;
     padding-right: 20px;

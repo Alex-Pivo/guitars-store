@@ -1,18 +1,14 @@
 import style from "./body.module.css";
 import { Canvas } from "@react-three/fiber";
-// import { OrbitControls } from "@react-three/drei";
 // import Sphere from "./3d/Sphere";
 import Guitar from "./3d/guitar/Guitar";
 import { ModelStrat } from "./3d/Strat/ModelStrat";
 import { Bass } from "./3d/bass/Bass";
 import { Suspense } from "react";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/routes,";
 import { Link } from "react-router-dom";
 
 function Body() {
-  const navigate = useNavigate();
-
   return (
     <>
       <div className={style.body}>
@@ -32,7 +28,10 @@ function Body() {
             </Link>
           </div>
 
-          <Canvas
+          {/* <div className={style.acoustic__img}>
+
+          </div> */}
+          {/* <Canvas
             className={style.acoustic__model}
             camera={{
               fov: 40,
@@ -42,9 +41,9 @@ function Body() {
             <ambientLight intensity={0.1} />
             <directionalLight position={[1, 1, 1]} intensity={10.8} />
             <Suspense fallback={null}>
-{/*               <Guitar /> */}
+              <Guitar />
             </Suspense>
-          </Canvas>
+          </Canvas> */}
         </div>
 
         <div className={style.second}>
@@ -82,8 +81,9 @@ function Body() {
           <div className={style.third__info}>
             <h1>Бас гітари</h1>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              laborum, optio, sequi facilis reprehenderit.
+              Гра на бас-гітарі розвиває почуття ритму та гармонії, що робить
+              вас більш універсальним музикантом. Цей інструмент часто
+              затребуваний у музичних колективах.
             </p>
             <Link
               to={`${ROUTES.GUITARS}?type=bass`}
@@ -93,7 +93,7 @@ function Body() {
             </Link>
           </div>
 
-          <Canvas
+          {/* <Canvas
             className={style.bass__model}
             camera={{
               fov: 100,
@@ -103,9 +103,9 @@ function Body() {
             <ambientLight intensity={0.1} />
             <directionalLight position={[1, 1, 1]} intensity={10.8} />
             <Suspense fallback={null}>
-{/*               <Bass /> */}
+              <Bass />
             </Suspense>
-          </Canvas>
+          </Canvas> */}
         </div>
       </div>
     </>
