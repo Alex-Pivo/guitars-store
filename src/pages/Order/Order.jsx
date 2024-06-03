@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useCart } from "../../components/Cart/CartContext";
 import styles from "../../styles/order.module.scss";
 import GooglePayButton from "@google-pay/button-react";
-import { Resend } from "resend";
 import { useRef } from "react";
 
 const Order = () => {
@@ -10,9 +9,7 @@ const Order = () => {
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
   const form = useRef();
-  const resend = new Resend("re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS");
 
   const calculateTotal = () => {
     return cart.items.reduce((total, item) => {
@@ -24,39 +21,25 @@ const Order = () => {
 
   const totalAmount = calculateTotal();
 
-  // const handlePaymentSuccess = (paymentRequest) => {
-  //   console.log("Payment successful", paymentRequest);
-  //   setIsPaymentSuccessful(true);
-  //   resend.emails.send({
-  //     from: 'pivoshenckoalexsey@gmail.com',
-  //     to: email,
-  //     subject: 'Hello World',
-  //     html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
-  //   });
-  //   clearCart(); // Очистка корзины после успешной оплаты
-  // };
-
-  const handlePaymentSuccess = (paymentRequest, email) => {
+  const handlePaymentSuccess = async (paymentRequest) => {
     console.log("Payment successful", paymentRequest);
     setIsPaymentSuccessful(true);
 
-    // Отправка письма через Resend
-    resend.emails
-      .send({
-        from: "pivoshenckoalexsey@gmail.com",
-        to: email,
-        subject: "Hello World",
-        html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
-        mode: "no-cors",
-      })
-      .then(() => {
-        console.log("Email sent successfully");
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
       });
+      const data = await response.json();
+      console.log("Email sent successfully:", data);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
 
-    clearCart(); // Очистка корзины после успешной оплаты
+    clearCart();
   };
 
   return (
