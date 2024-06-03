@@ -1,32 +1,42 @@
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { email } = req.body;
+const express = require('express');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 
-    try {
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS`, // убедитесь, что ключ API хранится в .env файле
-        },
-        body: JSON.stringify({
-          from: "pivoshenckoalexsey@gmail.com",
-          to: email,
-          subject: "Hello World",
-          html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
-        }),
-      });
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-      if (response.ok) {
-        res.status(200).json({ message: 'Email sent successfully' });
-      } else {
-        const error = await response.json();
-        res.status(response.status).json({ message: 'Error sending email', error });
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Internal server error', error });
+app.use(bodyParser.json());
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'pivoshenckoalexsey@gmail.com',
+    pass: '120pio603A',
+  },
+});
+
+app.post('/api/send-email', (req, res) => {
+  const { to, subject, html } = req.body;
+
+  const mailOptions = {
+    from: 'pivoshenckoalexsey@gmail.com',
+    to,
+    subject,
+    html,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Error sending email');
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).send('Email sent successfully');
     }
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
-  }
-}
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
