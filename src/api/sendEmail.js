@@ -1,47 +1,32 @@
-import { Resend } from '@resend/node';
-import axios from 'axios';
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    const { email } = req.body;
 
-export default async (req, res) => {
-  if (req.method !== 'POST') {
+    try {
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS`, // убедитесь, что ключ API хранится в .env файле
+        },
+        body: JSON.stringify({
+          from: "pivoshenckoalexsey@gmail.com",
+          to: email,
+          subject: "Hello World",
+          html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+        }),
+      });
+
+      if (response.ok) {
+        res.status(200).json({ message: 'Email sent successfully' });
+      } else {
+        const error = await response.json();
+        res.status(response.status).json({ message: 'Error sending email', error });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error', error });
+    }
+  } else {
     res.status(405).json({ message: 'Method not allowed' });
-    return;
   }
-
-  const { email } = req.body;
-
-  if (!email) {
-    res.status(400).json({ message: 'Email is required' });
-    return;
-  }
-
-  const resend = new Resend('re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS');
-
-  try {
-    const response = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
-      to: [email],
-      subject: 'Hello World',
-      text: 'It works!',
-      attachments: [
-        {
-          filename: '',
-          content: '',
-        },
-      ],
-      headers: {
-        'X-Entity-Ref-ID': '123456789',
-      },
-      tags: [
-        {
-          name: 'category',
-          value: 'confirm_email',
-        },
-      ],
-    });
-
-    res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ message: 'Error sending email' });
-  }
-};
+}
