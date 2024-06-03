@@ -33,6 +33,7 @@ const Order = () => {
         },
         body: JSON.stringify({ email }),
       });
+
       const data = await response.json();
       console.log("Email sent successfully:", data);
     } catch (error) {
