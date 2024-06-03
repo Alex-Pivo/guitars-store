@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useCart } from "../../components/Cart/CartContext";
 import styles from "../../styles/order.module.scss";
 import GooglePayButton from "@google-pay/button-react";
+import axios from 'axios';
 
 const Order = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const form = useRef();
 
   const calculateTotal = () => {
     return cart.items.reduce((total, item) => {
@@ -24,38 +26,38 @@ const Order = () => {
     setIsPaymentSuccessful(true);
 
     try {
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
+      // Отправляем запрос на сервер для отправки письма
+      await axios.post('/api/send-email', {
+        to: email,
+        subject: "Заказ успешно оформлен",
+        html: `
+          <p>Спасибо за ваш заказ!</p>
+          <p>Сумма заказа: ${totalAmount.toFixed(2)} ₴</p>
+          <p>Ваш заказ:</p>
+          <ul>
+            ${cart.items.map(item => `<li>${item.name} - ${item.cost} ₴</li>`).join('')}
+          </ul>
+        `
       });
 
-      if (response.ok) {
-        console.log("Email sent successfully");
-      } else {
-        const error = await response.json();
-        console.error("Error sending email:", error);
-      }
+      console.log("Email sent successfully");
+      clearCart();
     } catch (error) {
       console.error("Error sending email:", error);
     }
-
-    clearCart();
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Оформлення замовлення</h2>
+      <h2 className={styles.title}>Оформление заказа</h2>
       {isPaymentSuccessful ? (
         <div className={styles.successMessage}>
-          <h3>Оплата пройшла успішно!</h3>
-          <p>Дякуємо за ваше замовлення. Ми зв'яжемося з вами найближчим часом.</p>
+          <h3>Оплата прошла успешно!</h3>
+          <p>Спасибо за ваш заказ. Мы свяжемся с вами в ближайшее время.</p>
         </div>
       ) : (
         <div className={styles.info}>
-          <h3 className={styles.subtitle}>Ваші товари:</h3>
+          <h3 className={styles.subtitle}>Ваши товары:</h3>
           <div className={styles.items}>
             {cart.items.map((item) => (
               <div className={styles.item} key={item.id}>
@@ -74,36 +76,50 @@ const Order = () => {
                 </div>
                 <div className={styles.right}>
                   <p className={styles.name}>{item.name}</p>
-                  <p className={styles.quant}>Кількість: {item.quantity}</p>
-                  <p className={styles.cost}>Ціна: {item.cost} ₴</p>
-                  <button className={styles.btn} onClick={() => removeFromCart(item.id)}>
-                    Видалити
+                  <p className={styles.quant}>Количество: {item.quantity}</p>
+                  <p className={styles.cost}>Цена: {item.cost} ₴</p>
+
+                  <button
+                    className={styles.btn}
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    Удалить
                   </button>
                 </div>
               </div>
             ))}
             {cart.items.length === 0 && (
               <p className={styles.mes}>
-                В вашому замовленні немає товарів. Додайте товар до кошика.
+                В вашем заказе нет товаров. Добавьте товар в корзину.
               </p>
             )}
           </div>
-          <form className={styles.bottom}>
+          <form ref={form} className={styles.bottom}>
             <div className={styles.form}>
               <label>
-                Ім'я:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                Имя:
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </label>
               <br />
               <label>
                 Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </label>
             </div>
+
             <h3 className={styles.main__cost}>
-              Загальна сума: <span>{totalAmount.toFixed(2)} ₴</span>
+              Общая сумма: <span>{totalAmount.toFixed(2)} ₴</span>
             </h3>
-            {cart.items.length != 0 && (
+
+            {cart.items.length !== 0 && (
               <GooglePayButton
                 environment="TEST"
                 paymentRequest={{
