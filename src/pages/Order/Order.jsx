@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useCart } from "../../components/Cart/CartContext";
 import styles from "../../styles/order.module.scss";
 import GooglePayButton from "@google-pay/button-react";
-import { useRef } from "react";
+import { Resend } from "resend";
 
 const Order = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const form = useRef();
+  const resend = new Resend("re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS");
 
   const calculateTotal = () => {
     return cart.items.reduce((total, item) => {
@@ -21,24 +21,23 @@ const Order = () => {
 
   const totalAmount = calculateTotal();
 
-  const handlePaymentSuccess = async (paymentRequest) => {
+  const handlePaymentSuccess = (paymentRequest) => {
     console.log("Payment successful", paymentRequest);
     setIsPaymentSuccessful(true);
 
-    try {
-      const response = await fetch('/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
+    resend.emails
+      .send({
+        from: "pivoshenckoalexsey@gmail.com",
+        to: email,
+        subject: "Hello World",
+        html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+      })
+      .then(() => {
+        console.log("Email sent successfully");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
       });
-
-      const data = await response.json();
-      console.log("Email sent successfully:", data);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
 
     clearCart();
   };
@@ -49,9 +48,7 @@ const Order = () => {
       {isPaymentSuccessful ? (
         <div className={styles.successMessage}>
           <h3>Оплата пройшла успішно!</h3>
-          <p>
-            Дякуємо за ваше замовлення. Ми зв'яжемося з вами найближчим часом.
-          </p>
+          <p>Дякуємо за ваше замовлення. Ми зв'яжемося з вами найближчим часом.</p>
         </div>
       ) : (
         <div className={styles.info}>
@@ -76,11 +73,7 @@ const Order = () => {
                   <p className={styles.name}>{item.name}</p>
                   <p className={styles.quant}>Кількість: {item.quantity}</p>
                   <p className={styles.cost}>Ціна: {item.cost} ₴</p>
-
-                  <button
-                    className={styles.btn}
-                    onClick={() => removeFromCart(item.id)}
-                  >
+                  <button className={styles.btn} onClick={() => removeFromCart(item.id)}>
                     Видалити
                   </button>
                 </div>
@@ -92,31 +85,21 @@ const Order = () => {
               </p>
             )}
           </div>
-          <form ref={form} className={styles.bottom}>
+          <form className={styles.bottom}>
             <div className={styles.form}>
               <label>
                 Ім'я:
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
               </label>
               <br />
               <label>
                 Email:
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </label>
             </div>
-
             <h3 className={styles.main__cost}>
               Загальна сума: <span>{totalAmount.toFixed(2)} ₴</span>
             </h3>
-
             {cart.items.length != 0 && (
               <GooglePayButton
                 environment="TEST"
