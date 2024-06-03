@@ -1,3 +1,4 @@
+import { Resend } from '@resend/node';
 import axios from 'axios';
 
 export default async (req, res) => {
@@ -13,22 +14,30 @@ export default async (req, res) => {
     return;
   }
 
+  const resend = new Resend('re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS');
+
   try {
-    const response = await axios.post(
-      'https://api.resend.com/v1/emails',
-      {
-        from: 'pivoshenckoalexsey@gmail.com',
-        to: email,
-        subject: 'Hello World',
-        html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
-      },
-      {
-        headers: {
-          'Authorization': `Bearer re_as6Dd7ky_NzJiwQYq35fUx4tWyqDsNTPS`,
-          'Content-Type': 'application/json',
+    const response = await resend.emails.send({
+      from: 'Acme <onboarding@resend.dev>',
+      to: [email],
+      subject: 'Hello World',
+      text: 'It works!',
+      attachments: [
+        {
+          filename: '',
+          content: '',
         },
-      }
-    );
+      ],
+      headers: {
+        'X-Entity-Ref-ID': '123456789',
+      },
+      tags: [
+        {
+          name: 'category',
+          value: 'confirm_email',
+        },
+      ],
+    });
 
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
