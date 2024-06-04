@@ -38,6 +38,10 @@ const Order = () => {
             ${cart.items.map(item => `<li>${item.name} - ${item.cost} ₴</li>`).join('')}
           </ul>
         `
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin': 'https://frisson-guitars.vercel.app'
+        }
       });
 
       console.log("Email sent successfully");
@@ -164,4 +168,3 @@ const Order = () => {
 };
 
 export default Order;
-
