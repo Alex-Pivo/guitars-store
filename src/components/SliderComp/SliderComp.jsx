@@ -1,13 +1,12 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {EffectFade, Autoplay } from "swiper/modules";
+import styles from "../../styles/slidercomp.module.scss";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import 'swiper/css/effect-fade';
 import "swiper/css/thumbs";
-
-import {EffectFade, Autoplay } from "swiper/modules";
-import styles from "../../styles/slidercomp.module.scss";
 
 const SliderComp = () => {
   return (

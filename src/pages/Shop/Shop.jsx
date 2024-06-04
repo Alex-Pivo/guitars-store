@@ -1,12 +1,10 @@
-import { ROUTES } from "../../routes/routes,";
+import { ROUTES } from "../../routes/routes";
 import styles from "../../styles/shop.module.scss";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { Link } from "react-router-dom";
 import SliderComp from "../../components/SliderComp/SliderComp";
-
 import { guitars } from "../../guitars-data/guitars.data";
 
 const Shop = () => {
@@ -15,14 +13,14 @@ const Shop = () => {
     type: "Усі",
     fret: "Усі",
     pickupType: "Усі",
-    price: "Усі"
+    price: "Усі",
   });
 
   const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const guitarType = params.get('type') || "Усі";
+    const guitarType = params.get("type") || "Усі";
     setFilters((prevFilters) => ({
       ...prevFilters,
       type: guitarType,
@@ -38,19 +36,21 @@ const Shop = () => {
     const filterFrets = (filters.fret || "").toLowerCase();
     const guitarPickupType = (guitar.pickup || "").toLowerCase();
     const filterPickupType = (filters.pickupType || "").toLowerCase();
-    const guitarCost = parseFloat(guitar.cost.replace(/\s/g, '')); // Удаление пробелов и преобразование в число
+    const guitarCost = parseFloat(guitar.cost.replace(/\s/g, ""));
 
     let priceRange = [0, Infinity];
     if (filters.price !== "Усі") {
-      priceRange = filters.price.split(" - ").map(value => parseFloat(value));
+      priceRange = filters.price.split(" - ").map((value) => parseFloat(value));
     }
 
     return (
-      (filterManufacturer === "усі" || guitarManufacturer === filterManufacturer) &&
+      (filterManufacturer === "усі" ||
+        guitarManufacturer === filterManufacturer) &&
       (filterType === "усі" || guitarType === filterType) &&
       (filterFrets === "усі" || guitarFrets === filterFrets) &&
       (filterPickupType === "усі" || guitarPickupType === filterPickupType) &&
-      (guitarCost >= priceRange[0] && guitarCost <= priceRange[1])
+      guitarCost >= priceRange[0] &&
+      guitarCost <= priceRange[1]
     );
   });
 
@@ -70,7 +70,9 @@ const Shop = () => {
         <Sidebar filters={filters} setFilters={setFilters} />
         <div className={styles.items}>
           {filteredGuitars.length === 0 ? (
-            <p className={styles.empty}>Жодна гітара не відповідає поточним фільтрам :(</p>
+            <p className={styles.empty}>
+              Жодна гітара не відповідає поточним фільтрам :(
+            </p>
           ) : (
             filteredGuitars.map((guitar) => (
               <Link

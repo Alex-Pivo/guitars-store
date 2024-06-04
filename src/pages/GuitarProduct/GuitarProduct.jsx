@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import stylesGuitar from "../../styles/guitarProduct.module.scss";
-
 import { guitars } from "../../guitars-data/guitars.data";
 import { useParams } from "react-router-dom";
-
-import { ROUTES } from "../../routes/routes,";
+import { ROUTES } from "../../routes/routes";
 import styles from "../../styles/shop.module.scss";
-
-import Sidebar from "../../components/Sidebar/Sidebar";
 import { Link } from "react-router-dom";
-import { Canvas } from "@react-three/fiber";
-
 import { useCart } from "../../components/Cart/CartContext";
-
 import SliderGuitar from "../../components/SliderGuitar/SliderGuitar";
 
 const GuitarProduct = () => {
   const { id } = useParams();
-  const [guitarsAr, setGuitarsAr] = useState([]);
   const [guitar, setGuitar] = useState(null);
   let [cunt, setCunt] = useState(0);
-
   const { addToCart } = useCart();
 
+  const audioRef = useRef(null);
+
+  const playAudio = () => {
+    audioRef.current.play();
+  };
+
   useEffect(() => {
-    // Находим товар по его id
     const foundGuitar = guitars.find((guitar) => guitar.id === parseInt(id));
     setGuitar(foundGuitar);
   }, [id]);
@@ -43,8 +39,6 @@ const GuitarProduct = () => {
           / {guitar ? guitar.name : "none"}
         </div>
         <div className={styles.container}>
-          {/* <Sidebar></Sidebar> */}
-
           {guitar ? (
             <div className={stylesGuitar.product}>
               <div className={stylesGuitar.top}>
@@ -53,12 +47,13 @@ const GuitarProduct = () => {
                 <div className={stylesGuitar.info}>
                   <h2 className={stylesGuitar.name}>{guitar.name}</h2>
                   <p className={stylesGuitar.text}>Виробник: {guitar.firm}</p>
-                  <p className={stylesGuitar.text}>Наявність: Є в наявнсті</p>
-                  <p className={stylesGuitar.text}>Код товару: 623545</p>
+                  <p className={stylesGuitar.text}>Наявність: {guitar.avail}</p>
+                  <p className={stylesGuitar.text}>Код товару: {guitar.code}</p>
 
                   <p className={stylesGuitar.cost}>{guitar.cost} ₴</p>
 
-                  <button className={stylesGuitar.btn__play}>Послухати</button>
+                  <audio ref={audioRef} src={guitar.audio} />
+                  <button onClick={playAudio} className={stylesGuitar.btn__play}>Послухати</button>
 
                   <button
                     className={stylesGuitar.btn}
@@ -68,7 +63,6 @@ const GuitarProduct = () => {
                   </button>
                 </div>
               </div>
-
               <div className={stylesGuitar.bottom}>
                 <div className={stylesGuitar.btns}>
                   <button
@@ -95,20 +89,7 @@ const GuitarProduct = () => {
                   >
                     ОБЗОР
                   </button>
-                  <button
-                    className={
-                      cunt === 2
-                        ? stylesGuitar.cat_btn_active
-                        : stylesGuitar.cat_btn
-                    }
-                    onClick={() => {
-                      setCunt((cunt = 2));
-                    }}
-                  >
-                    3D МОДЕЛЬ
-                  </button>
                 </div>
-
                 <div className={stylesGuitar.info__container}>
                   {cunt === 0 && (
                     <div className={stylesGuitar.haracteristics}>
@@ -135,7 +116,7 @@ const GuitarProduct = () => {
               </div>
             </div>
           ) : (
-            <p>Товар не найден</p>
+            <p>Товар не знайдено :(</p>
           )}
         </div>
       </div>

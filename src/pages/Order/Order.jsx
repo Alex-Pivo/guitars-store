@@ -2,12 +2,13 @@ import React, { useState, useRef } from "react";
 import { useCart } from "../../components/Cart/CartContext";
 import styles from "../../styles/order.module.scss";
 import GooglePayButton from "@google-pay/button-react";
-import axios from 'axios';
+import emailjs from "emailjs-com";
 
 const Order = () => {
   const { cart, removeFromCart, clearCart } = useCart();
-  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState("loading");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const form = useRef();
 
@@ -22,30 +23,37 @@ const Order = () => {
   const totalAmount = calculateTotal();
 
   const handlePaymentSuccess = async (paymentRequest) => {
+    if (!name || !email) {
+      alert("Будь ласка, введіть ваше ім'я та електронну пошту.");
+      return;
+    }
+
     console.log("Payment successful", paymentRequest);
-    setIsPaymentSuccessful(true);
+    setIsPaymentSuccessful("true");
 
     try {
-      // Отправляем запрос на сервер для отправки письма
-      await axios.post('https://vercel-688niiat8-alexpivos-projects.vercel.app/api/send-email', {
-        to: email,
-        subject: "Заказ успешно оформлен",
-        html: `
-          <p>Спасибо за ваш заказ!</p>
-          <p>Сумма заказа: ${totalAmount.toFixed(2)} ₴</p>
-          <p>Ваш заказ:</p>
-          <ul>
-            ${cart.items.map(item => `<li>${item.name} - ${item.cost} ₴</li>`).join('')}
-          </ul>
-        `
-      }, {
-        headers: {
-          'Access-Control-Allow-Origin': 'https://frisson-guitars.vercel.app'
-        }
-      });
+      const templateParams = {
+        user_name: name,
+        user_email: email,
+        user_phone: phone,
+        total_amount: totalAmount.toFixed(2),
+        order_details: cart.items
+          .map((item) => `${item.name} - ${item.cost} ₴`)
+          .join(", "),
+      };
+
+      await emailjs.send(
+        "service_f4nh1bw",
+        "template_2pafgsq",
+        templateParams,
+        "zfvxbPUhkQVKIPpld"
+      );
 
       console.log("Email sent successfully");
       clearCart();
+      setName("");
+      setEmail("");
+      setPhone("");
     } catch (error) {
       console.error("Error sending email:", error);
     }
@@ -53,15 +61,16 @@ const Order = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Оформление заказа</h2>
-      {isPaymentSuccessful ? (
+      <h2 className={styles.title}>Оформлення замовлення</h2>
+      {isPaymentSuccessful === "true" && (
         <div className={styles.successMessage}>
-          <h3>Оплата прошла успешно!</h3>
-          <p>Спасибо за ваш заказ. Мы свяжемся с вами в ближайшее время.</p>
+          <h3>Оплата пройшла успішно!</h3>
+          <p>Дякуємо за ваше замовлення. На вашу пошту було надіслано лист з деталями замовлення.</p>
         </div>
-      ) : (
+      )}  
+      {isPaymentSuccessful === "loading" && (
         <div className={styles.info}>
-          <h3 className={styles.subtitle}>Ваши товары:</h3>
+          <h3 className={styles.subtitle}>Ваші товари:</h3>
           <div className={styles.items}>
             {cart.items.map((item) => (
               <div className={styles.item} key={item.id}>
@@ -80,32 +89,34 @@ const Order = () => {
                 </div>
                 <div className={styles.right}>
                   <p className={styles.name}>{item.name}</p>
-                  <p className={styles.quant}>Количество: {item.quantity}</p>
-                  <p className={styles.cost}>Цена: {item.cost} ₴</p>
+                  <p className={styles.quant}>Кількість: {item.quantity}</p>
+                  <p className={styles.cost}>Ціна: {item.cost} ₴</p>
 
                   <button
                     className={styles.btn}
                     onClick={() => removeFromCart(item.id)}
                   >
-                    Удалить
+                    Видалити
                   </button>
                 </div>
               </div>
             ))}
             {cart.items.length === 0 && (
               <p className={styles.mes}>
-                В вашем заказе нет товаров. Добавьте товар в корзину.
+                У вашому замовленні немає товарів. Додайте товар до кошика.
               </p>
             )}
           </div>
-          <form ref={form} className={styles.bottom}>
+          <form ref={form} className={styles.bottom} name="order_form">
             <div className={styles.form}>
               <label>
-                Имя:
+                Ім'я:
                 <input
                   type="text"
+                  name="user_name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </label>
               <br />
@@ -113,19 +124,45 @@ const Order = () => {
                 Email:
                 <input
                   type="email"
+                  name="user_email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </label>
+              <br />
+              <label>
+                Номер телефону:
+                <input
+                  type="phone"
+                  name="user_phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </label>
+              <input
+                type="hidden"
+                name="total_amount"
+                value={totalAmount.toFixed(2)}
+              />
+              <input
+                type="hidden"
+                name="order_details"
+                value={cart.items
+                  .map((item) => `${item.name} - ${item.cost} ₴`)
+                  .join(", ")}
+              />
             </div>
 
             <h3 className={styles.main__cost}>
-              Общая сумма: <span>{totalAmount.toFixed(2)} ₴</span>
+              Загальна сума: <span>{totalAmount.toFixed(2)} ₴</span>
             </h3>
 
             {cart.items.length !== 0 && (
               <GooglePayButton
                 environment="TEST"
+                onLoadPaymentData={handlePaymentSuccess}
                 paymentRequest={{
                   apiVersion: 2,
                   apiVersionMinor: 0,
@@ -157,10 +194,18 @@ const Order = () => {
                     countryCode: "UA",
                   },
                 }}
-                onLoadPaymentData={handlePaymentSuccess}
               />
             )}
           </form>
+        </div>
+      )}
+      {isPaymentSuccessful === "false" && (
+        <div className={styles.errorMessage}>
+          <h3>Помилка під час оплати!</h3>
+          <p>
+            Сталася помилка при обробці вашого платежу. Будь ласка, спробуйте
+            знову пізніше або зверніться до нас.
+          </p>
         </div>
       )}
     </div>

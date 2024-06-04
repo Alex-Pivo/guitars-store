@@ -36,10 +36,19 @@
 }
 
 .logo {
-  width: 25px;
-  height: 25px;
+  width: 55px;
+  height: 55px;
   background-color: #ffffff;
   border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .logoname {
@@ -51,7 +60,7 @@
 }
 
 .menu {
-  width: 300px;
+  width: 500px;
   height: 100%;
 
   display: flex;
@@ -185,8 +194,8 @@
     // position: fixed;
     // z-index: 1;
 
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .container {
@@ -198,23 +207,23 @@
     position: relative;
   }
 
-  .logo__container {
-    width: 200px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+  // .logo__container {
+  //   width: 200px;
+  //   height: 100%;
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  //   justify-content: flex-start;
 
-    text-decoration: none;
-  }
+  //   text-decoration: none;
+  // }
 
-  .logo {
-    width: 25px;
-    height: 25px;
-    background-color: #ffffff;
-    border-radius: 50%;
-  }
+  // .logo {
+  //   width: 25px;
+  //   height: 25px;
+  //   background-color: #ffffff;
+  //   border-radius: 50%;
+  // }
 
   .logoname {
     margin-left: 10px;
@@ -225,7 +234,7 @@
   }
 
   .menu {
-    width: 300px;
+    width: 400px;
     height: 100%;
 
     display: flex;
@@ -414,7 +423,7 @@
     overflow: auto;
     transition: all 0.8s ease 0s;
     background: linear-gradient(#000000c0, #000000c0),
-      url("../../public/header.png");
+      url("../../public/header1.jpg");
     background-blend-mode: overlay;
     background-position: center;
     background-size: cover;
@@ -464,7 +473,7 @@
     overflow-y: auto;
     transition: all 0.8s ease 0s;
     background: linear-gradient(#000000c0, #000000c0),
-      url("../../public/header.png");
+      url("../../public/header1.jpg");
     background-blend-mode: overlay;
     background-position: center;
     background-size: cover;

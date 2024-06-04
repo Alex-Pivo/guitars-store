@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import styles from "./cart.module.scss";
+import React from "react";
+import styles from "../../styles/cart.module.scss";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../routes/routes,";
-
+import { ROUTES } from "../../routes/routes";
 import { useCart } from "./CartContext";
 
 const Cart = ({ onClose, isOpen }) => {
   const { cart, removeFromCart } = useCart();
-  let [amount, setAmount] = useState();
 
   const calculateTotal = () => {
     return cart.items.reduce((total, item) => {
@@ -41,8 +39,8 @@ const Cart = ({ onClose, isOpen }) => {
             />
           </svg>
         </div>
-        {cart.items.length === 0 ? ( // Проверяем, есть ли товары в корзине
-          <p className={styles.emptyCart}>Кошик порожній :(</p> // Отображаем сообщение, если корзина пуста
+        {cart.items.length === 0 ? (
+          <p className={styles.emptyCart}>Кошик порожній :(</p>
         ) : (
           <div className={styles.cart__items}>
             {cart.items.map((item) => (
@@ -78,11 +76,13 @@ const Cart = ({ onClose, isOpen }) => {
           </div>
         )}
         <div className={styles.bottom}>
-          {cart.items.length > 0 && ( // Проверяем, есть ли товары в корзине
+          {cart.items.length > 0 && (
             <React.Fragment>
               <p className={styles.price}>{totalAmount.toFixed(2)} ₴</p>
-              <Link to={ROUTES.ORDER} className={styles.btn__price}
-              onClick={onClose}
+              <Link
+                to={ROUTES.ORDER}
+                className={styles.btn__price}
+                onClick={onClose}
               >
                 Переглянути замовлення
               </Link>

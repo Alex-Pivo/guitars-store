@@ -1,21 +1,15 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from "../../styles/guitarProduct.module.scss";
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-import styles from "../../styles/guitarProduct.module.scss";
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-
 const SliderGuitar = ({guitar}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   let imagesAr = guitar.images;
 
   return (
