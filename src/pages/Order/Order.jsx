@@ -27,7 +27,7 @@ const Order = () => {
 
     try {
       // Отправляем запрос на сервер для отправки письма
-      await axios.post('https://vercel-e6i2w377j-alexpivos-projects.vercel.app/api/send-email', {
+      await axios.post('https://vercel-688niiat8-alexpivos-projects.vercel.app/api/send-email', {
         to: email,
         subject: "Заказ успешно оформлен",
         html: `
