@@ -53,10 +53,19 @@ const GuitarProduct = () => {
                   <p className={stylesGuitar.cost}>{guitar.cost} ₴</p>
 
                   <audio ref={audioRef} src={guitar.audio} />
-                  <button onClick={playAudio} className={stylesGuitar.btn__play}>Послухати</button>
+                  <button
+                    onClick={playAudio}
+                    className={stylesGuitar.btn__play}
+                  >
+                    Послухати
+                  </button>
 
                   <button
-                    className={stylesGuitar.btn}
+                    className={
+                      guitar.avail === "Є в наявнсті"
+                        ? stylesGuitar.btn
+                        : stylesGuitar.btn_no
+                    }
                     onClick={() => addToCart(guitar)}
                   >
                     Додати в кошик
@@ -87,7 +96,7 @@ const GuitarProduct = () => {
                       setCunt((cunt = 1));
                     }}
                   >
-                    ОБЗОР
+                    ОГЛЯД
                   </button>
                 </div>
                 <div className={stylesGuitar.info__container}>
