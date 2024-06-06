@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/sideBar.module.scss";
 
-const manufacturers = ["Усі", "Fender", "D'Angelico", "Les Paul", "Jackson"];
+const manufacturers = ["Усі", "Fender", "D'Angelico", "Gibson", "Jackson"];
 const guitarTypes = ["Усі", "electric", "acoustic", "bass"];
 const fretCounts = ["Усі", "19", "20", "21", "22"];
 const pickupTypes = ["Усі", "S", "S-S", "H", "H-H"];
